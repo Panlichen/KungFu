@@ -68,6 +68,8 @@ def build_optimizer(name, batch_size):
     # Scale learning rate according to the level of data parallelism
     optimizer = tf.train.GradientDescentOptimizer(learning_rate *
                                                   current_cluster_size())
+    # optimizer = tf.keras.optimizers.SGD(learning_rate *
+    #                                               current_cluster_size())
 
     # KungFu: Wrap the TensorFlow optimizer with KungFu distributed optimizers.
     if name == 'sync-sgd':
